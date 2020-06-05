@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div style="margin: 20px">        
+        <h2 align="center">Update contact</h2>
+    </div>
+    
+    <div class="content_section">
+
+        <form 
+            action="/{{ contact.user_id }}/update/{{contact.id}}"
+            method="POST" 
+            class="container" 
+            autocomplete="off" 
+            style="padding-left:25%; padding-right:25%">
+
+            {{ form.hidden_tag() }}
+            
+            <div class="form_group" style="margin: 10px">
+                <label class="col-sm-4 col-form-label">
+                    {{ form.name.label() }} 
+                </label>
+                <div class="col-sm-12">
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control", value= contact.name) }}
+                    {% endif %}
+                </div>            
+            </div>
+
+            <div class="form_group" style="margin: 10px">
+                <label class="col-sm-4 col-form-label">
+                    {{ form.email.label() }} 
+                </label>
+                <div class="col-sm-12">
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control", value= contact.email) }}
+                    {% endif %}
+                </div>            
+            </div>
+
+            <div class="form_group" style="margin: 10px">
+                <label class="col-sm-4 col-form-label"> {{ form.mob.label }} </label>
+                <div class="col-sm-12">
+                    {% if form.mob.errors %}
+                        {{ form.mob(class="form-control form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.mob.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.mob(class="form-control", value= contact.mob) }}
+                    {% endif %}
+                </div>            
+            </div>
+                
+
+            <div class="form_group" style="margin: 25px">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock body%}

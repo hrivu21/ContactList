@@ -7,9 +7,10 @@
 {%endblock%}
 
 {% block body %}
-
-    <div style="margin: 20px">        
+    <div style="margin: 20px"> 
+        <a href="{{ url_for('logout')}}" class="btn btn-primary btn-sm">Logout</a>       
         <h2 align="center">Your Contact List</h2>
+
     </div>
 
     {% if contacts|length < 1 %}

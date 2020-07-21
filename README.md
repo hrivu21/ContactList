@@ -1,4 +1,4 @@
-This is beginner level project, primarily aimed at learning backend web development.
+This is a beginner level project, primarily aimed at learning backend web development.
 
 The project uses the Flask framework for the backend.
 

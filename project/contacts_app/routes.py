@@ -54,7 +54,7 @@ def login():
             return redirect("/login")
 
         login_user(user)
-        flash(f'{username} logged in', 'success')
+        # flash(f'{username} logged in', 'success')
         return redirect(f"/{user.id}/contact_list")
 
     return render_template("login.html", form=form)

@@ -2,23 +2,36 @@
 
 {%block head%}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-
     <title>Contacts</title>
+
+    <style type="text/css">
+        #float-right{
+            float: right;
+        }
+        #heading{
+            margin: 20px;
+        }
+        body{
+            background-color: ;
+        }
+        label{
+            margin-bottom: 2px;
+            padding: 0px;
+        }
+    </style>
 {%endblock%}
 
 {% block body %}
     <div class="topnav">
         <ul>
             <li><a><strong>Contact List App</strong></a></li>            
-            <li style="float:right"><a  href="{{ url_for('logout')}}">Logout</a></li>
-            <li style="float:right"><a><b>Logged in as: </b><i>{{user.username}}</i></a></li>
+            <li id = "float-right"><a  href="{{ url_for('logout')}}">Logout</a></li>
+            <li id = "float-right"><a><b>Logged in as: </b><i>{{user.username}}</i></a></li>
         </ul>
     </div>
 
-    <div style="margin: 20px"> 
-        <!-- <a href="{{ url_for('logout')}}" class="btn btn-primary btn-sm">Logout</a>        -->
+    <div id="heading"> 
         <h2 align="center">Your Contact List</h2>
-
     </div>
 
     {% if contacts|length < 1 %}
@@ -75,7 +88,7 @@
             {{ form.hidden_tag() }}
 
             <div class="form-group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
-                <label class="col-sm-4 col-form-label" style="padding-bottom: 4px">{{ form.name.label }} </label>
+                <label class="col-sm-4 col-form-label">{{ form.name.label }} </label>
 
                 <div class="col-sm-12">
                     {% if form.name.errors %}
@@ -92,7 +105,7 @@
             </div>
 
             <div class="form_group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
-                <label class="col-sm-4 col-form-label" style="padding-bottom: 4px">{{ form.email.label() }}</label>
+                <label class="col-sm-4 col-form-label">{{ form.email.label() }}</label>
 
                 <div class="col-sm-12">
                     {% if form.email.errors %}
@@ -109,7 +122,7 @@
             </div>
 
             <div class="form_group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
-                <label class="col-sm-4 col-form-label" style="padding-bottom: 4px">{{ form.mob.label() }} </label>
+                <label class="col-sm-4 col-form-label">{{ form.mob.label() }} </label>
 
                 <div class="col-sm-12">
                     {% if form.mob.errors %}
@@ -126,9 +139,7 @@
             </div>
             
             <div class="form_group" style="margin: 10px; padding-left: 15px; padding-bottom: 20px">
-
-                {{ form.submit(class="btn btn-success") }}
-                
+                {{ form.submit(class="btn btn-success") }}                
             </div>
                                 
         </form>

@@ -3,22 +3,6 @@
 {%block head%}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <title>Contacts</title>
-
-    <style type="text/css">
-        #float-right{
-            float: right;
-        }
-        #heading{
-            margin: 20px;
-        }
-        label{
-            margin-bottom: 2px;
-            padding: 0px;
-        }
-        body{
-            background-color:  #d0d3d4 ;
-        }
-    </style>
 {%endblock%}
 
 {% block body %}
@@ -72,23 +56,22 @@
     <br>
 
 
-    <div style="margin: 20px">        
+    <div id="heading">        
         <h4 align="center">Add a new contact</h4>
     </div>
 
-    <div class="content_section">
+    <div id="content-section">
 
         <form 
             action="/{{user.id}}/contact_list" 
             method="POST" 
             class="container" 
-            autocomplete="off"
-            style="padding-left:25%; padding-right:25%; ">
+            autocomplete="off">
 
             {{ form.hidden_tag() }}
 
-            <div class="form-group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
-                <label class="col-sm-4 col-form-label">{{ form.name.label }} </label>
+            <div class="form-group">
+                <label class="col-sm-4 col-form-label">{{ form.name.label }}</label>
 
                 <div class="col-sm-12">
                     {% if form.name.errors %}
@@ -104,7 +87,7 @@
                 </div>            
             </div>
 
-            <div class="form_group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
+            <div class="form-group">
                 <label class="col-sm-4 col-form-label">{{ form.email.label() }}</label>
 
                 <div class="col-sm-12">
@@ -121,7 +104,7 @@
                 </div>            
             </div>
 
-            <div class="form_group" style="margin-left: 10px; margin-right: 10px; margin-bottom: 4px">
+            <div class="form-group">
                 <label class="col-sm-4 col-form-label">{{ form.mob.label() }} </label>
 
                 <div class="col-sm-12">
@@ -138,7 +121,7 @@
                 </div>            
             </div>
             
-            <div class="form_group" style="margin: 10px; padding-left: 15px; padding-bottom: 20px">
+            <div class="form-group-btn">
                 {{ form.submit(class="btn btn-success") }}                
             </div>
                                 

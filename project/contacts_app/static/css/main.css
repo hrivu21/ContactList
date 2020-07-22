@@ -1,9 +1,41 @@
+body{
+
+}
+#float-right{
+    float: right;
+}
+
+#heading{
+    margin: 20px;
+}
+
+label{
+    margin: 0px;
+    padding: 0px;
+}
+
+#content-section{
+    margin: 0% 20%;
+    padding: 0px 50px;
+}
+
+.form-group{
+    margin: 0px;
+    padding: 0px;
+}
+
+.form-group-btn{
+    padding: 10px 15px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;border: 1px solid #e7e7e7;
+  overflow: hidden;
   background-color: #f3f3f3;
+  position: sticky;
+  top: 0;
 }
 
 li {
@@ -21,11 +53,4 @@ li a {
 li a:hover {
   background-color: #c4c4c4;
   color: #111;
-}
-
-ul {
-  border: 1px solid #e7e7e7;
-  background-color: #f3f3f3;
-  position: sticky;
-  top: 0;
 }

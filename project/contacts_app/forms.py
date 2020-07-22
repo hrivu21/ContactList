@@ -9,22 +9,16 @@ from contacts_app.models import User
 class ContactForm(FlaskForm):
     name = StringField('Name :', validators=[InputRequired()])
     email = StringField('Email id :', validators=[InputRequired(), Email(message='Invalid email')])
-
     reg = re.compile("^[0-9]{10}$")
     mob = StringField('Mobile no.:', validators=[InputRequired(), Regexp(reg, message='Invalid number')])
-
     submit = SubmitField('Submit')
 
 
 class RegisterForm(FlaskForm):
     username = StringField('Username :', validators=[InputRequired()])
-
     email = StringField('Email id :', validators=[InputRequired(), Email(message='Invalid email')])
-
     password = PasswordField('New password: ', validators=[InputRequired(), Length(min=8, message='Password should be at least 8 characters long')])
-
     retype_password = PasswordField('Confirm password', validators=[InputRequired(), EqualTo('password', message='Passwords must match')])
-
     submit = SubmitField('Create new account')
 
     # custom validations
@@ -41,7 +35,5 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField('Username :', validators=[InputRequired()])
-
     password = PasswordField('Password: ', validators=[InputRequired(), Length(min=8, message='Password should be at least 8 characters long')])
-
     submit = SubmitField('Login')

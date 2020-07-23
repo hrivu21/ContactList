@@ -9,40 +9,35 @@
         h5{
             color: #f4f6f6;
         }
-        .container{
-            margin: 10%;
-        }
         a{
             margin: 3px;
         }
-        #buttons{
-            padding: 15px 0px;
+        #top{
+            margin-top: 15%;
         }
-        #icon{
-            position: relative;
-            float: right;
-            margin-right: 150px;
-            margin-top: 20px;
-            padding: 0px;
-        }
+        
     </style>
 
 {% endblock%}
 
 {% block body %}
-    <div class="container">
-        <div class="home">
-            <div id="icon">
-                <img src="static/images/Contacts.jpg" width='350'>
-            </div>
-            <div class="homebox">
+    <div class="container" id="top">        
+        <div class="row">
+            <div class="col-sm-7">
                 <h2><strong>Welcome to Contacts Book!</strong></h2>
                 <h5>A hassle-free way to save your contacts.</h5>
             </div> 
-            
-            <div id="buttons">          
-                <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
-                <a class="btn btn-primary  btn-lg" href="/login" role="button">Login</a>  
+
+            <div class="col-sm-5">
+                <img src="static/images/Contacts.jpg" width='300' height='100'>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">          
+                <a class="btn btn-primary " href="/register" role="button">Register</a>
+                <a class="btn btn-primary  " href="/login" role="button">Login</a>  
             </div>          
         </div>
     </div>

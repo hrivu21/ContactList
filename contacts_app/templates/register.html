@@ -9,14 +9,8 @@
         }
         #header{
           margin-top: 5%;
+          margin-bottom: 20px;
           color: #f4f6f6;
-        }
-        #container-form{
-          margin-left: 33%;
-          margin-top: 30px;
-        }
-        #form-end{
-          margin-left: 15px;
         }
     </style>
 
@@ -31,85 +25,98 @@
     <form
     action=""
     method="POST"
-    class="container"
     autocomplete="on"
     >
     {{ form.hidden_tag() }}
 
-    <div class="container" id="container-form">
+    <div class="container">
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                <label>{{form.username.label}}</label>
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
 
-        <div class="form-group col-sm-4">
-            <label>{{form.username.label}}</label>
+                {% else %}
+                  {{ form.username(class="form-control", placeholder="Choose username") }}
+                {% endif %}
 
-            {% if form.username.errors %}
-                {{ form.username(class="form-control is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                      <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-
-            {% else %}
-              {{ form.username(class="form-control", placeholder="Choose username") }}
-            {% endif %}
-
+            </div>
         </div>
 
-      <div class="form-group col-sm-4">
-        <label>{{form.email.label}}</label>
-        {% if form.email.errors %}
-          {{ form.email(class="form-control form-control is-invalid") }}
-          <div class="invalid-feedback">
-            {% for error in form.email.errors %}
-              <span>{{ error }}</span>
-            {% endfor %}
-          </div>
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                <label>{{form.email.label}}</label>
+                {% if form.email.errors %}
+                  {{ form.email(class="form-control form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
 
-        {% else %}
-          {{ form.email(class="form-control", placeholder="eg. abc@xyz.com") }}
-          
-        {% endif %}
-      </div>
+                {% else %}
+                  {{ form.email(class="form-control", placeholder="eg. abc@xyz.com") }}                  
+                {% endif %}
+            </div>
+        </div>
 
-      <div class="form-group col-sm-4">
-        <label>{{form.password.label}}</label>
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                <label>{{form.password.label}}</label>
 
-        {% if form.password.errors %}
-          {{ form.password(class="form-control form-control is-invalid") }}
-          <div class="invalid-feedback">
-            {% for error in form.password.errors %}
-              <span>{{ error }}</span>
-            {% endfor %}
-          </div>
+                {% if form.password.errors %}
+                  {{ form.password(class="form-control form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
 
-        {% else %}
-          {{ form.password(class="form-control", placeholder="Choose password") }}
-          
-        {% endif %}
-      </div>
+                {% else %}
+                  {{ form.password(class="form-control", placeholder="Choose password") }}
+                  
+                {% endif %}
+            </div>
+        </div>
 
-      <div class="form-group col-sm-4">
-        <label>{{form.retype_password.label}}</label>
-        {% if form.retype_password.errors %}
-          {{ form.retype_password(class="form-control form-control is-invalid") }}
-          <div class="invalid-feedback">
-            {% for error in form.retype_password.errors %}
-              <span>{{ error }}</span>
-            {% endfor %}
-          </div>
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                <label>{{form.retype_password.label}}</label>
+                {% if form.retype_password.errors %}
+                  {{ form.retype_password(class="form-control form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.retype_password.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
 
-        {% else %}
-          {{ form.retype_password(class="form-control", placeholder="Retype password") }}              
-        {% endif %}
-      </div>
+                {% else %}
+                  {{ form.retype_password(class="form-control", placeholder="Retype password") }}              
+                {% endif %}
+            </div>
+        </div>
 
-      <div class="form-group" id="form-end">
-        {{ form.submit(class="btn btn-success") }}
-      </div>
-
-      <div class="form-group" id="form-end">
-        <a href="/login" role="button">Already have an account? Login</a>
-      </div>
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                {{ form.submit(class="btn btn-success") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class=col-sm-4></div>
+            <div class="form-group col-sm-4">
+                <a href="/login" role="button">Already have an account? Login</a>
+            </div>
+        </div>
 
     </div>
     </form>

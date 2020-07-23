@@ -1,12 +1,12 @@
-body{
-
+a{
+  padding: 2px;
 }
 #float-right{
     float: right;
 }
 
 #heading{
-    margin: 20px;
+    margin: 30px;
 }
 
 label{
@@ -25,32 +25,8 @@ label{
 }
 
 .form-group-btn{
-    padding: 10px 15px;
+    margin: 5px 0px;
+    padding: 0px;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #f3f3f3;
-  position: sticky;
-  top: 0;
-}
 
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: #c4c4c4;
-  color: #111;
-}

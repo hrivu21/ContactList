@@ -6,16 +6,26 @@
 {%endblock%}
 
 {% block body %}
-    <div class="topnav">
-        <ul>
-            <li><a><strong>Contact List App</strong></a></li>            
-            <li id = "float-right"><a  href="{{ url_for('logout')}}">Logout</a></li>
-            <li id = "float-right"><a><b>Logged in as: </b><i>{{user.username}}</i></a></li>
-        </ul>
-    </div>
+    <nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Contact List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="">User: <b>{{user.username}}</b></a>
+                </li> 
+                <li class="nav-item" >
+                    <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div id="heading"> 
-        <h2 align="center">Your Contact List</h2>
+        <h2 align="center"><strong>Your Contact List</strong></h2>
     </div>
 
     {% if contacts|length < 1 %}
@@ -24,33 +34,33 @@
     </div>
 
     {% else%}
-
-    <table class="table table-hover table-dark">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Added</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for contact in contacts %}
+    <div class="table-responsive-md">
+        <table class="table table-hover table-sm">
+            <thead class="thead-light">
                 <tr>
-                    <td>{{ contact.name}}</td>
-                    <td>{{ contact.email}}</td>
-                    <td>{{ contact.mob}}</td>
-                    <td>{{ contact.date_created.date()}}</td>
-                    <td>
-                        <!-- <button type="button" class="btn btn-primary btn-sm">Small button</button> -->
-                        <a href="/{{ contact.user_id }}/delete/{{ contact.id }}" class="btn btn-danger btn-sm">Delete</a>
-                        <a href="/{{ contact.user_id }}/update/{{ contact.id }}" class="btn btn-primary btn-sm">Update</a>
-                    </td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <!-- <th>Added</th> -->
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name}}</td>
+                        <td>{{ contact.email}}</td>
+                        <td>{{ contact.mob}}</td>
+                        <!-- <td>{{ contact.date_created.date()}}</td> -->
+                        <td>
+                                <a href="/{{ contact.user_id }}/delete/{{ contact.id }}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="/{{ contact.user_id }}/update/{{ contact.id }}" class="btn btn-primary btn-sm">Update</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endif %}
 
     <br>
@@ -60,69 +70,70 @@
         <h4 align="center">Add a new contact</h4>
     </div>
 
-    <div id="content-section">
-
+    <div class="container" style="padding: 0 50px">
         <form 
             action="/{{user.id}}/contact_list" 
             method="POST" 
-            class="container" 
             autocomplete="off">
 
             {{ form.hidden_tag() }}
 
-            <div class="form-group">
-                <label class="col-sm-4 col-form-label">{{ form.name.label }}</label>
+                <div class="row">
+                    <div class=col-sm-4></div>
+                    <div class="form-group col-sm-4">
+                        <label class="col-form-label">{{ form.name.label }}</label>
+                        {% if form.name.errors %}
+                            {{ form.name(class="form-control form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.name(class="form-control") }}
+                        {% endif %}
+                    </div>            
+                </div>
 
-                <div class="col-sm-12">
-                    {% if form.name.errors %}
-                        {{ form.name(class="form-control form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.name.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.name(class="form-control") }}
-                    {% endif %}
-                </div>            
-            </div>
+            <div class="row">
+                    <div class=col-sm-4></div>
+                    <div class="form-group col-sm-4">
+                        <label class="col-form-label">{{ form.email.label }}</label>
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control") }}
+                        {% endif %}
+                    </div>            
+                </div>
 
-            <div class="form-group">
-                <label class="col-sm-4 col-form-label">{{ form.email.label() }}</label>
-
-                <div class="col-sm-12">
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control") }}
-                    {% endif %}
-                </div>            
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-4 col-form-label">{{ form.mob.label() }} </label>
-
-                <div class="col-sm-12">
-                    {% if form.mob.errors %}
-                        {{ form.mob(class="form-control form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.mob.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.mob(class="form-control") }}
-                    {% endif %}
-                </div>            
-            </div>
+            <div class="row">
+                    <div class=col-sm-4></div>
+                    <div class="form-group col-sm-4">
+                        <label class="col-form-label">{{ form.mob.label }}</label>
+                        {% if form.mob.errors %}
+                            {{ form.mob(class="form-control form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.mob.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.mob(class="form-control") }}
+                        {% endif %}
+                    </div>            
+                </div>
             
-            <div class="form-group-btn">
-                {{ form.submit(class="btn btn-success") }}                
+            <div class="row">
+                <div class=col-sm-4></div>
+                <div class="form-group-btn col-sm-3">
+                    {{ form.submit(class="btn btn-success") }}                
+                </div>
             </div>
                                 
         </form>
